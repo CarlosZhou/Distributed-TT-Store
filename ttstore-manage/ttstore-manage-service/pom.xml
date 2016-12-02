@@ -7,4 +7,16 @@
   </parent>
   <groupId>com.ttstore.manage</groupId>
   <artifactId>ttstore-manage-service</artifactId>
+  
+  
+  
+  
+    <!--service依赖mapper层  -->
+  <dependencies>
+    <dependency>
+      <groupId>com.ttstore.manage</groupId>
+      <artifactId>ttstore-manage-mapper</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>

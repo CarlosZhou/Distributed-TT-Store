@@ -7,20 +7,27 @@
     <artifactId>ttstore-manage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
+  
   <groupId>com.ttstore.manage</groupId>
   <artifactId>ttstore-manage-web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>ttstore-manage-web Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+
+  
+  
+  
+  <!--web依赖service层  -->
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <groupId>com.ttstore.manage</groupId>
+      <artifactId>ttstore-manage-service</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
+  
+  
+  
   <build>
     <finalName>ttstore-manage-web</finalName>
   </build>

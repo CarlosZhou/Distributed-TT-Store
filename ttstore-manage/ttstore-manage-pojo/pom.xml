@@ -7,4 +7,9 @@
   </parent>
   <groupId>com.ttstore.manage</groupId>
   <artifactId>ttstore-manage-pojo</artifactId>
+  
+  
+  
+      <!--pojo无需依赖  -->
+
 </project>
