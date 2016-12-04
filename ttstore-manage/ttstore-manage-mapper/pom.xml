@@ -10,7 +10,7 @@
   
   
   
-      <!--service依赖mapper层  -->
+      <!--mapper依赖pojo层  -->
   <dependencies>
     <dependency>
       <groupId>com.ttstore.manage</groupId>
