@@ -117,8 +117,9 @@ var TT = TAOTAO = {
     			    	var _win = this;
     			    	$("ul",_win).tree({
     			    		url:'/rest/item/cat',
-    			    		method:"GET ",
     			    		animate:true,
+    			    		
+    			    		method:"get",
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
     			    				// 填写到cid中
@@ -126,7 +127,6 @@ var TT = TAOTAO = {
     			    				_ele.next().text(node.text).attr("cid",node.id);
     			    				$(_win).window('close');
     			    				if(data && data.fun){
-    			    					//自己定义点击树后的业务处理动作
     			    					data.fun.call(this,node);
     			    				}
     			    			}
