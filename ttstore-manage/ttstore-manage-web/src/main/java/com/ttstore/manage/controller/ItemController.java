@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ttstore.common.bean.EasyUIResult;
 import com.ttstore.manage.mapper.ItemMapper;
 import com.ttstore.manage.pojo.Item;
 import com.ttstore.manage.pojo.ItemCat;
@@ -29,7 +30,16 @@ public class ItemController {
 	private ItemDescService itemDescService;
 	
 	
-	
+	/**
+	 *  
+	 * @Title: saveItem   
+	 * @Description: 保存商品
+	 * @param: @param desc
+	 * @param: @param item
+	 * @param: @return      
+	 * @return: ResponseEntity<List<ItemCat>>      
+	 * @throws
+	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<List<ItemCat>> saveItem(@RequestParam(value="desc") String desc,Item item){
 
@@ -54,6 +64,20 @@ public class ItemController {
 
 	}
 	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<EasyUIResult> queryItemList(@RequestParam(value = "page",defaultValue="1") Integer page,
+													  @RequestParam(value = "rows",defaultValue="30") Integer rows){
+		
+	 
+		try {
+			return ResponseEntity.ok(itemService.queryItemList(page,rows));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+
+	}
 	
 
 }
