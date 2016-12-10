@@ -1,14 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.ttstore</groupId>
-  <artifactId>ttstore-manage</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  
-  
-  
- 
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ttstore</groupId>
+	<artifactId>ttstore-manage</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+
+
+
+
+
 	<!-- 集中定义依赖版本号 -->
 	<properties>
 		<junit.version>4.10</junit.version>
@@ -30,6 +32,9 @@
 	</properties>
 
 	<dependencies>
+
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -150,6 +155,14 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- 文件上传组件 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
 		<!-- 时间操作组件 -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -168,7 +181,11 @@
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.ttstore.common</groupId>
+			<artifactId>ttstore-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -198,7 +215,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!-- 配置Tomcat插件  包括配置端口-->
+				<!-- 配置Tomcat插件 包括配置端口 -->
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
@@ -212,7 +229,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-   
+ 
 	<modules>
 		<module>ttstore-manage-pojo</module>
 		<module>ttstore-manage-service</module>
