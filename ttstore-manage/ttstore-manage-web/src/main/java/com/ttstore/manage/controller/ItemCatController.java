@@ -13,6 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ttstore.manage.pojo.ItemCat;
 import com.ttstore.manage.service.ItemCatService;
 
+/**
+ * 
+ * @ClassName:  ItemCatController   
+ * @Description:查询商品分类
+ * @author: carlos-y
+ * @date:   2016年12月10日 下午9:56:06   
+ * @Copyright: 2016 carlos-y. All rights reserved.
+ */
 @Controller
 @RequestMapping("item/cat")
 public class ItemCatController {

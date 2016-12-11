@@ -45,6 +45,7 @@
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
         		$.messager.alert('提示','必须选择一个商品才能编辑!');
+        	
         		return ;
         	}
         	if(ids.indexOf(',') > 0){
@@ -53,7 +54,7 @@
         	}
         	
         	$("#itemEditWindow").window({
-        		onLoad :function(){
+        		onLoad :function(){  
         			//回显数据
         			var data = $("#itemList").datagrid("getSelections")[0];
         			data.priceView = TAOTAO.formatPrice(data.price);
