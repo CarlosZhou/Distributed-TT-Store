@@ -19,8 +19,11 @@ import com.ttstore.manage.mapper.ItemMapper;
 import com.ttstore.manage.pojo.Item;
 import com.ttstore.manage.pojo.ItemCat;
 import com.ttstore.manage.pojo.ItemDesc;
+import com.ttstore.manage.pojo.ItemParam;
+import com.ttstore.manage.pojo.ItemParamItem;
 import com.ttstore.manage.service.ItemCatService;
 import com.ttstore.manage.service.ItemDescService;
+import com.ttstore.manage.service.ItemParamItemService;
 import com.ttstore.manage.service.ItemService;
 
 @Controller
@@ -29,6 +32,11 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private ItemParamItemService itemParamItemService;
+	
+	
 	
 	@Autowired
 	private ItemDescService itemDescService;
@@ -45,18 +53,29 @@ public class ItemController {
 	 * @throws
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<List<ItemCat>> saveItem(@RequestParam(value="desc") String desc,Item item){
+	public ResponseEntity<List<ItemCat>> saveItem(@RequestParam(value="desc") String desc,Item item,
+			@RequestParam(value="itemParams") String itemParams ){
 
 		
 		try {
+			
+			//保存商品数据
 			item.setStatus(1);
 			itemService.save(item);
 			
 			
+			//保存商品描述数据
 			ItemDesc itemdesc = new ItemDesc();
 			itemdesc.setItemId(item.getId());
 			itemdesc.setItemDesc(desc);		
 			itemDescService.save(itemdesc);
+			
+			
+			//保存商品规格模板数据
+			ItemParamItem itemParamItem = new ItemParamItem();
+			itemParamItem.setParamData(itemParams);
+			itemParamItem.setItemId(item.getId());
+			itemParamItemService.saveSelective(itemParamItem);
 			
 			 ResponseEntity.status(HttpStatus.CREATED).build();
 			
@@ -121,8 +140,18 @@ public class ItemController {
 		 
 	}
 	
+	/**
+	 * 
+	 * @Title: editItem   
+	 * @Description: 更新商品信息
+	 * @param: @param desc
+	 * @param: @param item
+	 * @param: @return      
+	 * @return: ResponseEntity<Void>      
+	 * @throws
+	 */
 	@RequestMapping(method=RequestMethod.PUT)
-	public ResponseEntity<Void>  editItem(@RequestParam("desc") String desc,Item item){
+	public ResponseEntity<Void>  editItem(@RequestParam("desc") String desc,Item item,@RequestParam(value="itemParams") String itemParams){
 		
 		try {
 			
@@ -135,6 +164,16 @@ public class ItemController {
 			itemdesc.setItemId(item.getId());
 			itemdesc.setItemDesc(desc);		
 			itemDescService.save(itemdesc);
+			/*
+			ItemParamItem itemParamItem= new ItemParamItem();
+			itemParamItem.setItemId(item.getId());
+			itemParamItem.setParamData(itemParams);
+			
+			不能更新，因为没有主键，需要单独在写方法
+			
+			itemParamItemService.update(itemParamItem);*/
+			
+			itemParamItemService.updateItemParamItem(item.getId(),itemParams);
 			
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();//修改成功但无返回内容
 
