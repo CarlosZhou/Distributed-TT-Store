@@ -2,6 +2,7 @@ package com.ttstore.manage.controller;
 
 import java.util.List;
 
+import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -118,6 +119,33 @@ public class ItemController {
 		 
 		 return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		 
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT)
+	public ResponseEntity<Void>  editItem(@RequestParam("desc") String desc,Item item){
+		
+		try {
+			
+			if(TextUtils.isEmpty(item.getTitle())){
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);//参数错误
+			}
+			
+		    itemService.updateSelective(item);			
+			ItemDesc itemdesc = new ItemDesc();
+			itemdesc.setItemId(item.getId());
+			itemdesc.setItemDesc(desc);		
+			itemDescService.save(itemdesc);
+			
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();//修改成功但无返回内容
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		
+		
 	}
 	
 	
