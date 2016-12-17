@@ -12,22 +12,10 @@ Spring mvc 的配置文件
 
   -->
 	<!-- 注解驱动 -->
-	<mvc:annotation-driven>
-		<mvc:message-converters register-defaults="true">
-		
-		<!--自定义String的字符串的消息转换器  -->
-			<!-- <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<constructor-arg index="0" value="UTF-8"/>
-			</bean> -->
-			<!-- 下述 -->
-			<bean class="com.ttstore.common.spring.exetend.converter.json.CallbackMappingJackson2HttpMessageConverter">
-				<property name="callbackName" value="callback"/>
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven>
+	<mvc:annotation-driven/>
 	
 	<!-- 扫描Controller -->
-	<context:component-scan base-package="com.ttstore.manage.controller"/>
+	<context:component-scan base-package="com.ttstore.web.controller"/>
 	
 	<!-- 视图解析器 -->
 	<!-- 
@@ -38,14 +26,6 @@ Spring mvc 的配置文件
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-	
-	<!--上传文件解析器  -->
-		<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- 设定默认编码 -->
-		<property name="defaultEncoding" value="UTF-8"></property>
-		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
-		<property name="maxUploadSize" value="5242880"></property>
-	</bean>
+
 
 </beans>
