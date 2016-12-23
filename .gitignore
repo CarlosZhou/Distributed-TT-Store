@@ -3,3 +3,5 @@ RemoteSystemsTempFiles
 .settings
 .classpath
 .project
+redis-2.8.9
+redis-2.8.9/
