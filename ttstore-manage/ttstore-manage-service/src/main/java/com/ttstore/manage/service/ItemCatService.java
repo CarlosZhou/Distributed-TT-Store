@@ -18,10 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttstore.common.bean.EasyUIResult;
 import com.ttstore.common.bean.ItemCatData;
 import com.ttstore.common.bean.ItemCatResult;
+import com.ttstore.common.service.RedisService;
 import com.ttstore.manage.mapper.ItemCatMapper;
 import com.ttstore.manage.pojo.ItemCat;
 import com.ttstore.manage.service.base.BaseService;
-import com.ttstore.manage.service.base.RedisService;
 
 @Service
 public class ItemCatService extends BaseService<ItemCat>{

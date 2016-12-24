@@ -29,6 +29,8 @@
 				<!-- 数据库配置文件路径 标签可以配置多个文件路径 <value>classpath:jdbc.properties</value> 
 					<value>classpath:***</value> <value>classpath:*****</value> -->
 				<value>classpath:env.properties</value>
+				<value>classpath:httpclient.properties</value>
+				
 			</list>
 		</property>
 	</bean>

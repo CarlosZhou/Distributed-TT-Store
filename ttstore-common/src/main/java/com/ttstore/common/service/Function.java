@@ -1,4 +1,4 @@
-package com.ttstore.manage.service.base;
+package com.ttstore.common.service;
 
 
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttstore.common.service.ApiService;
-import com.ttstore.manage.pojo.Item;
+import com.ttstore.web.bean.Item;
 
  
 @Service
@@ -35,7 +35,7 @@ public class ItemService {
 	 */
 	public Item queryByid(Long itemId) {
 		
-		String url =TAOTAOMANAGE_URL+ "/rest/api/item"+itemId;
+		String url =TAOTAOMANAGE_URL+ "/rest/api/item/"+itemId;
 		try {
 			String jsonData = apiService.doGet(url);
 			if(null == jsonData){
