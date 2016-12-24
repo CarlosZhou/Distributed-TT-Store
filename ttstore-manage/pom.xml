@@ -220,7 +220,7 @@
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<configuration>
-						<port>8080</port>
+						<port>8082</port>
 						<path>/</path>
 						<!-- http://127.0.0.1:{port}/{path} 一般路径直接/ 不需要加项目名称 -->
 					</configuration>

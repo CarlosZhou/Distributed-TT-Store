@@ -27,9 +27,14 @@
 		<property name="locations">
 			<list>
 				<!-- 数据库配置文件路径 标签可以配置多个文件路径 <value>classpath:jdbc.properties</value> 
-					<value>classpath:***</value> <value>classpath:*****</value> -->
+					<value>classpath:***</value> <value>classpath:*****</value> -
+					
+					
+					这里引入的文件在其他配置文件中也可以引用	
+				-->
 				<value>classpath:jdbc.properties</value>
 				<value>classpath:env.properties</value>
+				<value>classpath:redis.properties</value>
 			</list>
 		</property>
 	</bean>

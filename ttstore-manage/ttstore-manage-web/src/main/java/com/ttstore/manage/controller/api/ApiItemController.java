@@ -27,6 +27,10 @@ public class ApiItemController {
 	//jackson 的 ObjectMapper 可以把对象转成json
 	private static final ObjectMapper  MAPPER = new ObjectMapper();
 	
+	
+	
+
+	
 	/**
 	 * 
 	 * @Title: queryItemCatList   
@@ -88,7 +92,7 @@ public class ApiItemController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		  
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	}
 	

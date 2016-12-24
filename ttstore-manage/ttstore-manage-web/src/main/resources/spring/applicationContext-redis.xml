@@ -18,7 +18,7 @@
 <!-- 分片式集群连接池 -->
 	<bean class="redis.clients.jedis.ShardedJedisPool">
 		<constructor-arg index="0" ref="jedisPoolConfig" />
-		<constructor-arg index="1" ref="jedisPoolConfig">
+		<constructor-arg index="1"  >
 
 			<!--配置有哪些节点 -->
 			<list>
