@@ -185,6 +185,13 @@
 			<artifactId>ttstore-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.ttstore.manage</groupId>
+			<artifactId>ttstore-manage-pojo</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 	</dependencies>
 	  <build>
 		<finalName>${project.artifactId}</finalName>
