@@ -29,6 +29,16 @@ import org.springframework.stereotype.Service;
 import com.ttstore.common.bean.HttpResult;
  
  
+/**
+ * 
+ * @ClassName:  ApiService   
+ * @Description:  HttpClient封装类 
+ *                记得导入httpclient依赖
+ * @author: carlos-y
+ * @date:   2016年12月24日 下午9:41:46   
+ * @Copyright: 2016 carlos-y. All rights reserved.
+ */
+
 @Service
 public class ApiService implements BeanFactoryAware {
 

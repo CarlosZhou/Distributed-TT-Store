@@ -13,7 +13,7 @@ import redis.clients.jedis.ShardedJedisPool;
 /**
  * 
  * @ClassName:  RedisService   
- * @Description:RedisService 封装层
+ * @Description:RedisService 封装层  记得导入依赖
  * @author: carlos-y
  * @date:   2016年12月23日 下午9:44:07   
  * @Copyright: 2016 carlos-y. All rights reserved.

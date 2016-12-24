@@ -1,5 +1,14 @@
 package com.ttstore.common.bean;
 
+
+/**
+ * 
+ * @ClassName:  HttpResult   
+ * @Description:HttpClient javaBean
+ * @author: carlos-y
+ * @date:   2016年12月24日 下午9:44:46   
+ * @Copyright: 2016 carlos-y. All rights reserved.
+ */
 public class HttpResult {
     
     private int statusCode;

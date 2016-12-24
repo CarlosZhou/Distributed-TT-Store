@@ -1,7 +1,9 @@
 package com.ttstore.manage.service;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.http.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +13,7 @@ import com.github.abel533.mapper.Mapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ttstore.common.bean.EasyUIResult;
+import com.ttstore.common.service.ApiService;
 import com.ttstore.manage.mapper.ItemCatMapper;
 import com.ttstore.manage.mapper.ItemMapper;
 import com.ttstore.manage.pojo.Item;
@@ -26,6 +29,9 @@ public class ItemService extends BaseService<Item>{
 	@Autowired
 	private ItemDescService itemDescService;
 
+	
+	@Autowired
+	private ApiService apiService;
 	
 	/**
 	 * 保存商品
@@ -77,6 +83,32 @@ public class ItemService extends BaseService<Item>{
  
 	}
 
-
+	/**
+	 * 
+	 * @Title: updateItem   
+	 * @Description: 更新数据需要通知前台删除缓存
+	 * @param: @param id
+	 * @param: @return      
+	 * @return: boolean      
+	 * @throws
+	 */
+		public boolean updateItem(Item id){
+			
+		/*	更新数据之前通知前台吧换存数据删除掉来保持数据同步
+		 * //前台系统公开的接收接口
+					  try {
+						apiService.doPost("url");
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		 	 这里需要try cache  理论上service不能try cache，但是通知和本身业务无关 不能影响事物继续执行，所以要捕获一次
+		 *
+		 */		
+			return true;
+		}
  
 }
