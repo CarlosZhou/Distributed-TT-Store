@@ -1,5 +1,6 @@
 package com.ttstore.sso.service;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttstore.common.bean.EasyUIResult;
 import com.ttstore.common.service.RedisService;
@@ -117,6 +120,37 @@ public class UserService {
 			redisService.set("TOKEN_"+token, objectMapper.writeValueAsString(user), REDIS_TIME);
 			
 			return token;
+		}
+
+		/**
+		 * 
+		 * @Title: queryUserByToken   
+		 * @Description: 根据TOKEN 查询用户信息
+		 * @param: @param token
+		 * @param: @return      
+		 * @return: User      
+		 * @throws
+		 */
+		public User queryUserByToken(String token) {
+			String key = "TOKEN_"+token;
+			
+			String jsonData = redisService.get(token);
+
+			if(StringUtils.isEmpty(jsonData)){
+				//登录超时
+				return null;
+				
+			}
+			try {
+				//每查询一次就重新设置一次redis的生存时间 时刻保持最新状态
+				redisService.exprie(key, REDIS_TIME);
+				return objectMapper.readValue(jsonData, User.class);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			
+			return null;
 		}
 
 }

@@ -190,6 +190,35 @@ public class UserController {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @Title: queryUserByToken   
+	 * @Description: 根据TOKEN 查询用户信息
+	 * @param: @param token
+	 * @param: @return      
+	 * @return: ResponseEntity<User>      
+	 * @throws
+	 */
+	@RequestMapping(value="{token}",method=RequestMethod.GET)
+	public ResponseEntity<User> queryUserByToken(@PathVariable("token") String token){
+		
+		try {
+			User user = userService.queryUserByToken(token);
+			
+			if(null==user){
+				
+				//资源不存在
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+				
+			}
+			return ResponseEntity.ok(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		
+	}
 
 }

@@ -383,7 +383,7 @@ $("#loginsubmit").click(function () {
                 if (result) {
                     var obj = eval(result);
                     if (obj.status == 200) {
-                    	obj.success = "http://www.taotao.com/";
+                    	obj.success = "http://127.0.0.1:8083/";
                         var isIE = !-[1,];
                         if (isIE) {
                             var link = document.createElement("a");

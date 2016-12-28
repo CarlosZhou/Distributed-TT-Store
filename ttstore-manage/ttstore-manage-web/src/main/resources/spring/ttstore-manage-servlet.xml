@@ -15,7 +15,7 @@ Spring mvc 的配置文件
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 		
-		<!--自定义String的字符串的消息转换器  -->
+		<!--自定义String的字符串的消息转换器  解决jsonp跨域请求问题  -->
 			<!-- <bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<constructor-arg index="0" value="UTF-8"/>
 			</bean> -->
