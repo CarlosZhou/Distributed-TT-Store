@@ -27,5 +27,14 @@ Spring mvc 的配置文件
 	</bean>
 	
 
+<mvc:interceptors>
+<mvc:interceptor>
+<!--比如检测是否登录的拦截器  -->
+<!-- /order/** 相关的请求都会走拦截器  ** 包含多级目录-->
+<mvc:mapping path="/order/**"/>
+<bean class="com.ttstore.web.interceptors.UserLoginHandlerInterceptor"></bean>
+</mvc:interceptor>
+
+</mvc:interceptors>
 
 </beans>

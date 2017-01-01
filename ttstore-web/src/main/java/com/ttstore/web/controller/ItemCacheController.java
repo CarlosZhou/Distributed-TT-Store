@@ -26,23 +26,23 @@ public class ItemCacheController {
 	@Autowired
 	private RedisService redisService;
 	
-	@Autowired
+	/*@Autowired
 	//private ItemService itemService;
 	
 	
 	@RequestMapping(value="${itemId}",method=RequestMethod.POST)
 	public ResponseEntity<Void> deleteCache(@PathVariable("itemId") Long itemId){
 		
-		/*
+		
 		 * 
 		 * 1 从service层中获取redis操作用的key
 		 * 2 用redisservice删除这个key
 		 * 3 返回相应状态码 204，出现异常相应500
 		 * 4 接下开开发后台逻辑
 		 * 
-		 * */
+		 * 
 		
+		return null;
 		
-		
-	}
+	}*/
 }

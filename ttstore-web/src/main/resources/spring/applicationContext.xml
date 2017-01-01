@@ -30,7 +30,7 @@
 					<value>classpath:***</value> <value>classpath:*****</value> -->
 				<value>classpath:env.properties</value>
 				<value>classpath:httpclient.properties</value>
-				
+				<value>classpath:redis.properties</value>
 			</list>
 		</property>
 	</bean>
