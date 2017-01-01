@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ttstore.common.utils.CookieUtils;
 import com.ttstore.sso.pojo.User;
 import com.ttstore.sso.service.UserService;
+import com.ttstore.sso.utils.CookieHelper;
 
 @RequestMapping("user")
 @Controller
@@ -176,8 +178,11 @@ public class UserController {
 			}
 			    //登录成功，保存token到cookie中
 				result.put("status", "200");
-								
-				CookieUtils.setCookie(request, response, "TT_TOKEN", token);
+						
+
+		            CookieHelper.setCookie(response, "TT_TOKEN", token);
+		            
+		            
 				
 		} catch (Exception e) {
 			//登录失败

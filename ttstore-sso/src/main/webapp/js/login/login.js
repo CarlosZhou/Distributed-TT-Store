@@ -383,7 +383,7 @@ $("#loginsubmit").click(function () {
                 if (result) {
                     var obj = eval(result);
                     if (obj.status == 200) {
-                    	obj.success = "http://127.0.0.1:8083/";
+                    	obj.success = "http://127.0.0.1:8081/index.html";
                         var isIE = !-[1,];
                         if (isIE) {
                             var link = document.createElement("a");

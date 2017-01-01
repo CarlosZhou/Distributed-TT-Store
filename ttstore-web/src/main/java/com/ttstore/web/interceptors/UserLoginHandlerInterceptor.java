@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ttstore.common.utils.CookieUtils;
 import com.ttstore.web.bean.User;
 import com.ttstore.web.service.UserService;
+import com.ttstore.web.utils.CookieHelper;
 
 /**
  * 
@@ -27,8 +28,9 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
-		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		String token = CookieHelper.getCookieValue(request, "TT_TOKEN");
+		
+ 		//String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
 		if(token==null){
 			//未登录 重定向到登录界面
 			response.sendRedirect("http://127.0.0.1:8083/user/login.html");
