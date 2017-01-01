@@ -28,7 +28,7 @@ public class OrderService {
         String url = TAOTAO_ORDER_URL + "/order/create";
         try {
             // 查询user数据
-            User user = UserThreadLocal.get();
+            User user = UserThreadLocal.get(); 
             // 设置当前登录用户信息
             order.setBuyerNick(user.getUsername());
             order.setUserId(user.getId());

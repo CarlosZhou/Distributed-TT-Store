@@ -2,7 +2,7 @@ package com.ttstore.web.threadlocal;
 
 import com.ttstore.web.bean.User;
 
-public class UserThreadLocal {
+public class UserThreadLocal { 
 
     private static final ThreadLocal<User> THREAD_LOCAL = new ThreadLocal<User>();
 

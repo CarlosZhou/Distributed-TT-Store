@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ttstore.common.utils.CookieUtils;
 import com.ttstore.web.bean.User;
 import com.ttstore.web.service.UserService;
+import com.ttstore.web.threadlocal.UserThreadLocal;
 import com.ttstore.web.utils.CookieHelper;
 
 /**
@@ -28,6 +29,11 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		
+		 //先清空防止数据错乱 与tomcat运行机制有关系
+		   UserThreadLocal.set(null);
+
+		
 		String token = CookieHelper.getCookieValue(request, "TT_TOKEN");
 		
  		//String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
@@ -45,7 +51,8 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor {
 
 	   }
 		
-	   //登录成功
+	   //登录成功 将User对象放进本地线程中 方便controlller和service从中获取
+	   UserThreadLocal.set(user);
 		return true;
 	}
 
