@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- Spring 和 solr的整合文件 -->
+
+
+	<bean class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+	<!--   // 在url中指定core名称：ttstore
+        String url = "http://127.0.0.1:8983/solr/ttstore";
+        HttpSolrServer httpSolrServer = new HttpSolrServer(url); // 定义solr的server
+        httpSolrServer.setParser(new XMLResponseParser()); // 设置响应解析器
+        httpSolrServer.setMaxRetries(1); // 设置重试次数，推荐设置为1
+        httpSolrServer.setConnectionTimeout(500); // 建立连接的最长时间
+	  -->
+	
+		<!--构造方法入参 -->
+		<constructor-arg index="0" value="${solr.url}">
+		</constructor-arg>
+		<!-- 传入参数 -->
+		<property name="parser">
+			<bean class="org.apache.solr.client.solrj.impl.XMLResponseParser"></bean>
+		</property>
+
+		<property name="maxRetries" value="${solr.maxRetries}"></property>
+
+		<property name="connectionTimeout" value="${solr.connectionTimeout}"></property>
+
+	</bean>
+
+
+
+</beans>
