@@ -26,11 +26,11 @@
 	            	<input type="hidden" name="price"/>
 	            </td>
 	        </tr>
-	        <tr>
+	      <!--   <tr>
 	            <td>库存数量:</td>
 	            <td><input class="easyui-numberbox" type="text" name="num" data-options="min:1,max:99999999,precision:0,required:true" /></td>
 	        </tr>
-	        <tr>
+	    -->     <tr>
 	            <td>条形码:</td>
 	            <td>
 	                <input class="easyui-textbox" type="text" name="barcode" data-options="validType:'length[1,30]'" />

@@ -20,11 +20,12 @@
 	
 	
 	
-	<!-- 队列监听 -->
+	<!-- 队列监听  
+		  如果没有队列 启动会报错 先注释
 	<rabbit:listener-container connection-factory="connectionFactory">
 		<rabbit:listener ref="itemMQHandler" method="execute" queue-names="myQuTTSTORE-WEB-ITEM-QUEUE" />
 	</rabbit:listener-container>
-
+ -->
 <!--  消费者对象 -->
 	<bean id="itemMQHandler" class="com.ttstore.web.mq.handler.ItemMQHandler" />
 	

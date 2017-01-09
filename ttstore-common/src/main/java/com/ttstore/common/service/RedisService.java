@@ -24,8 +24,7 @@ public class RedisService {
 	@Autowired
 	private ShardedJedisPool shardedJedisPool;
 	
-
-	private <T> T execute(Function<T,ShardedJedis> fun){
+ 	private <T> T execute(Function<T,ShardedJedis> fun){
 
         ShardedJedis shardedJedis = null;
         try {
@@ -39,9 +38,10 @@ public class RedisService {
                 // 关闭，检测连接是否有效，有效则放回到连接池中，无效则重置状态
                 shardedJedis.close();
             }
-            return null;
 
         }
+        return null;
+
 		
 	}
 	

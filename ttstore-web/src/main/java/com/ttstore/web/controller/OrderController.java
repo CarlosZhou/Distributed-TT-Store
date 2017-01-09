@@ -1,24 +1,16 @@
 package com.ttstore.web.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ttstore.web.bean.Item;
-import com.ttstore.web.bean.Order;
 import com.ttstore.web.service.ItemService;
-import com.ttstore.web.service.OrderService;
 
 @RequestMapping("order")
 @Controller
@@ -26,9 +18,9 @@ public class OrderController {
 
 	@Autowired
 	private ItemService itemService;
-	
+	/*
 	@Autowired
-	private OrderService orderService;
+	private OrderService orderService;*/
 	
 	@RequestMapping(value="{itemId}",method=RequestMethod.GET)
 	public ModelAndView toOrder(@PathVariable("itemId") Long itemId){
@@ -39,12 +31,12 @@ public class OrderController {
 		
 		return mv;
 	}
-	 /**
+	/* *//**
      * 提交订单
      * 
      * @param order
      * @return
-     */
+     *//*
     @RequestMapping(value = "submit", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> submit(Order order) {
         try {
@@ -63,9 +55,9 @@ public class OrderController {
             e.printStackTrace();
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-    }
+    }*/
 
-    @RequestMapping(value = "success", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "success", method = RequestMethod.GET)
     public ModelAndView success(@RequestParam("id") String orderId) {
         ModelAndView mv = new ModelAndView("success");
 
@@ -75,5 +67,20 @@ public class OrderController {
         // 当前时间向后推2天，01月02日
         mv.addObject("date", new DateTime().plusDays(2).toString("MM月dd日"));
         return mv;
+    }*/
+	
+/*    *//**
+     * 基于购物车实现下单功能
+     * 
+     * @return
+     *//*
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    public ModelAndView toCartOrder() {
+        ModelAndView mv = new ModelAndView("order-cart");
+        List<Cart> carts = this.cartService.queryCartListByUser();
+        mv.addObject("carts", carts);
+        return mv;
     }
+*/
+	
 }

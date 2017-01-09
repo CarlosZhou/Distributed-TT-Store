@@ -44,29 +44,29 @@
 	<!-- 扫描包 -->
 	<context:component-scan base-package="com.ttstore" />
 
-	<!-- 定义数据源 -->
+<!-- 	  定义数据源  
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close">
-		<!-- 数据库驱动 -->
+		数据库驱动
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<!-- 相应驱动的jdbcUrl -->
+		相应驱动的jdbcUrl
 		<property name="url" value="${jdbc.url}" />
-		<!-- 数据库的用户名 -->
+		数据库的用户名
 		<property name="username" value="${jdbc.username}" />
-		<!-- 数据库的密码 -->
+		数据库的密码
 		<property name="password" value="${jdbc.password}" />
 		<property name = "filters" value = "${filters}" />
-		<!-- 最大并发连接数 -->
+		最大并发连接数
 		<property name="maxActive" value="${maxActive}" />
-		<!-- 初始化连接数量 -->
+		初始化连接数量
 		<property name="initialSize" value="${initialSize}" />
-		<!-- 配置获取连接等待超时的时间 -->
+		配置获取连接等待超时的时间
 		<property name="maxWait" value="${maxWait}" />
-		<!-- 最小空闲连接数 -->
+		最小空闲连接数
 		<property name="minIdle" value="${minIdle}" />
-		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
 		<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />
-		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		配置一个连接在池中最小生存的时间，单位是毫秒
 		<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />
 		<property name="validationQuery" value="${validationQuery}" />
 		<property name="testWhileIdle" value="${testWhileIdle}" />
@@ -74,12 +74,69 @@
 		<property name="testOnReturn" value="${testOnReturn}" />
 		<property name = "maxOpenPreparedStatements" value
 		="${maxOpenPreparedStatements}" />
-		<!-- 打开 removeAbandoned 功能 -->
+		打开 removeAbandoned 功能
 		<property name="removeAbandoned" value="${removeAbandoned}" />
-		<!-- 1800 秒，也就是 30 分钟 -->
+		1800 秒，也就是 30 分钟
 		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" />
-		<!-- 关闭 abanded 连接时输出错误日志 -->
+		关闭 abanded 连接时输出错误日志
 		<property name="logAbandoned" value="${logAbandoned}" />
+	</bean> -->
+
+<!-- 配置连接池 -->
+	<bean id="masterDataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<!-- 数据库驱动 -->
+		<property name="driverClass" value="${jdbc.master.driver}" />
+		<!-- 相应驱动的jdbcUrl -->
+		<property name="jdbcUrl" value="${jdbc.master.url}" />
+		<!-- 数据库的用户名 -->
+		<property name="username" value="${jdbc.master.username}" />
+		<!-- 数据库的密码 -->
+		<property name="password" value="${jdbc.master.password}" />
+		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->
+		<property name="idleConnectionTestPeriod" value="60" />
+		<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->
+		<property name="idleMaxAge" value="30" />
+		<!-- 每个分区最大的连接数 -->
+		<property name="maxConnectionsPerPartition" value="150" />
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="5" />
 	</bean>
+	
+	<!-- 配置连接池 -->
+	<bean id="slave01DataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<!-- 数据库驱动 -->
+		<property name="driverClass" value="${jdbc.slave01.driver}" />
+		<!-- 相应驱动的jdbcUrl -->
+		<property name="jdbcUrl" value="${jdbc.slave01.url}" />
+		<!-- 数据库的用户名 -->
+		<property name="username" value="${jdbc.slave01.username}" />
+		<!-- 数据库的密码 -->
+		<property name="password" value="${jdbc.slave01.password}" />
+		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->
+		<property name="idleConnectionTestPeriod" value="60" />
+		<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->
+		<property name="idleMaxAge" value="30" />
+		<!-- 每个分区最大的连接数 -->
+		<property name="maxConnectionsPerPartition" value="150" />
+		<!-- 每个分区最小的连接数 -->
+		<property name="minConnectionsPerPartition" value="5" />
+	</bean>
+
+	<!-- 定义数据源，使用自己实现的数据源 -->
+	<bean id="dataSource" class="com.ttstore.manage.datasource.DynamicDataSource">
+		<!-- 设置多个数据源 -->
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<!-- 这个key需要和程序中的key一致 -->
+				<entry key="master" value-ref="masterDataSource"/>
+				<entry key="slave" value-ref="slave01DataSource"/>
+			</map>
+		</property>
+		<!-- 设置默认的数据源，这里默认走写库 -->
+		<property name="defaultTargetDataSource" ref="masterDataSource"/>
+	</bean>
+
 
 </beans>

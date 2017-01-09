@@ -19,7 +19,7 @@ public class OrderService {
     @Autowired
     private ApiService apiService;
 
-    @Value("${TAOTAO_ORDER_URL}")
+  /*  @Value("${TAOTAO_ORDER_URL}")
     private String TAOTAO_ORDER_URL;
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -47,12 +47,12 @@ public class OrderService {
         return null;
     }
 
-    /**
+    *//**
      * 根据订单号查询订单数据
      * 
      * @param orderId
      * @return
-     */
+     *//*
     public Order queryOrderById(String orderId) {
         try {
             String url = TAOTAO_ORDER_URL + "/order/query/" + orderId;
@@ -66,5 +66,5 @@ public class OrderService {
         }
         return null;
     }
-
+*/
 }

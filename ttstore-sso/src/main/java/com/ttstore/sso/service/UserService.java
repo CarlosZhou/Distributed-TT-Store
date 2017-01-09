@@ -16,6 +16,9 @@ import com.ttstore.common.bean.EasyUIResult;
 import com.ttstore.common.service.RedisService;
 import com.ttstore.sso.mapper.UserMapper;
 import com.ttstore.sso.pojo.User;
+import com.ttstore.sso.utils.JedisUtil;
+
+import redis.clients.jedis.Jedis;
 
 @Service
 public class UserService {
@@ -134,8 +137,10 @@ public class UserService {
 		public User queryUserByToken(String token) {
 			String key = "TOKEN_"+token;
 			
-			String jsonData = redisService.get(token);
-
+			String jsonData = redisService.get(key);
+		//	 Jedis jedis=JedisUtil.getInstance().getJedis();   
+		//	 String jsonData = jedis.get(key);
+			 
 			if(StringUtils.isEmpty(jsonData)){
 				//登录超时
 				return null;
